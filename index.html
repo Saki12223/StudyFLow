@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="screen-orientation" content="portrait primary">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>StudyFlow - Your Smart Study Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Intro Overlay -->
+    <div class="intro-overlay active">
+        <div class="intro-content">
+            <h1>Welcome to StudyFlow</h1>
+            <p>Your all-in-one study companion</p>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <i class="fas fa-book"></i>
+                    <h3>Smart Notes</h3>
+                    <p>Organize your thoughts effortlessly</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Pomodoro Timer</h3>
+                    <p>Stay focused and productive</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Study Calculator</h3>
+                    <p>Solve problems quickly</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-moon"></i>
+                    <h3>Dark Mode</h3>
+                    <p>Easy on your eyes</p>
+                </div>
+            </div>
+            <button class="btn-primary" id="getStarted">
+                <i class="fas fa-arrow-right"></i>
+                <span>Get Started</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main App Layout -->
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>StudyFlow</span>
+            </div>
+            <nav class="nav-links">
+                <button class="nav-btn active" data-section="notes">
+                    <i class="fas fa-book"></i>
+                    <span>Notes</span>
+                </button>
+                <button class="nav-btn" data-section="flashcards">
+                    <i class="fas fa-brain"></i>
+                    <span>Flashcards</span>
+                </button>
+                <button class="nav-btn" data-section="pomodoro">
+                    <i class="fas fa-clock"></i>
+                    <span>Pomodoro</span>
+                </button>
+                <button class="nav-btn" data-section="calculator">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculator</span>
+                </button>
+                <button class="nav-btn" data-section="cgpa">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>CGPA</span>
+                </button>
+            </nav>
+            <button class="nav-btn" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <!-- Notes Section -->
+            <section id="notes" class="section active">
+                <div class="section-header">
+                    <h2>Smart Notes</h2>
+                    <button class="btn-primary" id="newNote">
+                        <i class="fas fa-plus"></i>
+                        <span>New Note</span>
+                    </button>
+                </div>
+                <div class="notes-container">
+                    <div class="notes-list" id="notesList">
+                        <!-- Notes will be dynamically added here -->
+                    </div>
+                    <div class="note-editor">
+                        <input type="text" id="noteTitle" placeholder="Note Title">
+                        <textarea id="editor" placeholder="Start typing your notes here..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flashcards Section -->
+            <section id="flashcards" class="section">
+                <div class="section-header">
+                    <h2>Flashcards</h2>
+                    <button class="btn-primary" id="newDeck">
+                        <i class="fas fa-plus"></i>
+                        <span>New Deck</span>
+                    </button>
+                </div>
+                <div class="flashcard-container">
+                    <div class="deck-selector">
+                        <select id="deckSelect" class="deck-select">
+                            <option value="">Select Deck</option>
+                        </select>
+                    </div>
+                    <div class="flashcard" id="currentCard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <p>Click to flip</p>
+                            </div>
+                            <div class="flashcard-back">
+                                <p>Answer will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flashcard-controls">
+                        <button class="btn-primary" id="prevCard">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="btn-primary" id="addCard">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Card</span>
+                        </button>
+                        <button class="btn-primary" id="nextCard">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pomodoro Section -->
+            <section id="pomodoro" class="section">
+                <div class="section-header">
+                    <h2>Pomodoro Timer</h2>
+                </div>
+                <div class="pomodoro-container">
+                    <div class="timer-label">Focus Time</div>
+                    <div class="timer-display" id="timer">25:00</div>
+                    <div class="timer-controls">
+                        <button class="btn-primary" id="startTimer">
+                            <i class="fas fa-play"></i>
+                            <span>Start</span>
+                        </button>
+                        <button class="btn-primary" id="resetTimer">
+                            <i class="fas fa-redo"></i>
+                            <span>Reset</span>
+                        </button>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="focusCount">0</div>
+                            <div class="stat-label">Focus Sessions</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalTime">0</div>
+                            <div class="stat-label">Minutes Focused</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section id="calculator" class="section">
+                <div class="section-header">
+                    <h2>Study Calculator</h2>
+                </div>
+                <div class="calculator-container">
+                    <div class="calc-tabs">
+                        <button class="calc-tab active" data-calc="standard">Standard</button>
+                        <button class="calc-tab" data-calc="scientific">Scientific</button>
+                    </div>
+                    <div class="calc-display">
+                        <div class="calc-history" id="calcHistory"></div>
+                        <input type="text" id="standardDisplay" readonly value="0">
+                    </div>
+                    <div class="calc-buttons" id="standardButtons">
+                        <!-- Calculator buttons will be dynamically added here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- CGPA Calculator Section -->
+            <section id="cgpa" class="section">
+                <div class="section-header">
+                    <h2>CGPA Calculator</h2>
+                    <button class="btn-primary" id="addSemester">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Semester</span>
+                    </button>
+                </div>
+                <div class="cgpa-container">
+                    <div id="semesterList" class="semester-list">
+                        <!-- Semesters will be added here -->
+                    </div>
+                    <div class="cgpa-result">
+                        <div class="result-card">
+                            <h3>Your CGPA</h3>
+                            <div class="result-value" id="cgpaValue">0.00</div>
+                            <div class="grade-scale">
+                                <div class="grade-item">
+                                    <span>A</span>
+                                    <span>4.0</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>A-</span>
+                                    <span>3.7</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>B+</span>
+                                    <span>3.3</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>B</span>
+                                    <span>3.0</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>B-</span>
+                                    <span>2.7</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>C+</span>
+                                    <span>2.3</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>C</span>
+                                    <span>2.0</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>C-</span>
+                                    <span>1.7</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>D+</span>
+                                    <span>1.3</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>D</span>
+                                    <span>1.0</span>
+                                </div>
+                                <div class="grade-item">
+                                    <span>F</span>
+                                    <span>0.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Creator Info -->
+    <div class="creator-info">
+        Created by Saqib Kamal
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
